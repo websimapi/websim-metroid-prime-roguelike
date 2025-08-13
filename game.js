@@ -160,6 +160,11 @@ class MetroidPrimeRoguelike {
             mode: 'static',
             position: { left: '75px', bottom: '75px' }
         });
+        
+        // Listen to joystick movement events
+        this.joystick.on('move', (evt, data) => {
+            // Data is available in the event
+        });
     }
     
     generateLevel() {
@@ -336,11 +341,24 @@ class MetroidPrimeRoguelike {
     
     updateMobileMovement(delta) {
         if (this.joystick && this.camera) {
-            const data = this.joystick.getData();
-            if (data && data.vector) {
+            // Use the joystick's direct position data instead of getData()
+            const data = this.joystick;
+            if (data.frontPosition) {
                 const speed = this.player.speed * delta;
-                this.camera.position.x += data.vector.x * speed;
-                this.camera.position.z -= data.vector.y * speed;
+                const x = (data.frontPosition.x - data.position.x) / 75;
+                const y = (data.frontPosition.y - data.position.y) / 75;
+                
+                // Calculate forward/backward based on camera direction
+                const forward = new THREE.Vector3();
+                this.camera.getWorldDirection(forward);
+                forward.y = 0;
+                forward.normalize();
+                
+                const right = new THREE.Vector3();
+                right.crossVectors(forward, new THREE.Vector3(0, 1, 0));
+                
+                this.camera.position.add(forward.multiplyScalar(-y * speed));
+                this.camera.position.add(right.multiplyScalar(x * speed));
             }
         }
     }
@@ -408,4 +426,3 @@ class MetroidPrimeRoguelike {
 window.addEventListener('load', () => {
     new MetroidPrimeRoguelike();
 });
-
