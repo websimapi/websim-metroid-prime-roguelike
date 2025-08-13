@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metroid Prime Roguelike</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+            "nipplejs": "https://esm.sh/nipplejs@0.10.1"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="game-container">
+        <div id="ui-overlay">
+            <div id="health-bar">
+                <div id="health-fill"></div>
+            </div>
+            <div id="energy-bar">
+                <div id="energy-fill"></div>
+            </div>
+            <div id="crosshair">+</div>
+            <div id="mobile-controls">
+                <div id="joystick-zone"></div>
+                <button id="shoot-btn">FIRE</button>
+                <button id="jump-btn">JUMP</button>
+                <button id="scan-btn">SCAN</button>
+            </div>
+            <div id="minimap"></div>
+        </div>
+        <div id="loading-screen">
+            <div id="loading-text">INITIALIZING SCAN...</div>
+            <div id="loading-bar">
+                <div id="loading-fill"></div>
+            </div>
+        </div>
+        <div id="menu-screen">
+            <h1>METROID PRIME</h1>
+            <h2>ROGUELIKE</h2>
+            <button id="start-btn">START MISSION</button>
+            <button id="settings-btn">SETTINGS</button>
+        </div>
+    </div>
+    <script type="module" src="game.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+
